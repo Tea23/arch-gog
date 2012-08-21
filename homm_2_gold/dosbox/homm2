@@ -1,0 +1,4 @@
+#!/bin/bash
+
+dosbox -conf "/opt/gog/homm2/homm2.conf"
+exit $?

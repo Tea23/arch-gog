@@ -1,0 +1,29 @@
+pkgname=gog-homm_2_gold-dosbox
+_gogname=homm_2_gold
+pkgver=1
+pkgrel=1
+pkgdesc="A super duper awesome game yo"
+arch=('i686' 'x86_64')
+url="http://www.gog.com"
+license=('custom')
+depends=('dosbox' 'gog-homm_2_gold-base')
+source=("homm2.conf" "homm2.png" "homm2.desktop")
+md5sums=('2dab7b82e5c3708154e456f881d7a356'
+         '538ecd70b9f96adede2a728260dadb1a'
+         '5ab747683a1b2002e4cb24b33daaf10f')
+
+build() {
+	mkdir dosbox
+	mv homm2.conf dosbox/
+}
+
+package() {
+	install -D -m 644 $srcdir/homm2.png \
+		$pkgdir/usr/share/pixmaps/homm2.png
+
+	install -D -m 644 $srcdir/homm2.desktop \
+		$pkgdir/usr/share/applications/homm2.desktop
+
+	install -D -m 755 $srcdir/dosbox/homm2.conf \
+		$pkgdir/opt/gog/${_gogname}/dosbox/homm2.conf
+}
