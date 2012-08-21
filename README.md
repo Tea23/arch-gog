@@ -1,4 +1,4 @@
-#Arch Linux PKGBUILDs for GOG games
+#Arch Linux PKGBUILDs for GOG.com games
 These PKGBUILDs are provided for people who want a quick and dirty way to install their GOGs on Arch Linux.
 
 ##Usage
