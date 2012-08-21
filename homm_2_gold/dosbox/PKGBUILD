@@ -15,6 +15,7 @@ md5sums=('2dab7b82e5c3708154e456f881d7a356'
 build() {
 	mkdir dosbox
 	mv homm2.conf dosbox/
+	echo buttslol
 }
 
 package() {
