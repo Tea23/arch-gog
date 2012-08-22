@@ -13,4 +13,4 @@ arch=('any')
 url="http://www.gog.com/gamecard/freespace_2"
 license=('custom:goodoldgames')
 depends=('fs2_open'
-		'fs2_open-data')
+	'fs2_open-data')
