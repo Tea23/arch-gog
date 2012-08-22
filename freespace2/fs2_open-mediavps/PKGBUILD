@@ -55,7 +55,7 @@ package () {
 	cd $srcdir
 
 	install -D -m644 LICENSE "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
-	install -D -m644 fs2_open-mediavps "$pkgdir/usr/bin/fs2_open-mediavps"
+	install -D -m755 fs2_open-mediavps "$pkgdir/usr/bin/fs2_open-mediavps"
 
 	mv MediaVPS_3612/* mediavps_3612/
 	mkdir -p mediavps_3612/data/effects
