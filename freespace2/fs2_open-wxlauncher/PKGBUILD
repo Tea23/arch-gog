@@ -1,6 +1,7 @@
 # Maintainer: Joe Davison <joedavison.davison@gmail.com>
+#DONT. USE. THIS.
 
-pkgname=wxlauncher
+pkgname=fs2_open-wxlauncher
 _pkgtar=wxLauncher
 pkgver=0.9.1
 pkgrel=2
