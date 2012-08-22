@@ -8,6 +8,6 @@
 # http://www.hard-light.net/wiki/index.php/Command-Line_Reference
 
 # A lot of graphical and gameplay options are set via these flags - you should
-#	really take a look.
+#   really take a look.
 
 FS2OPTS=""
