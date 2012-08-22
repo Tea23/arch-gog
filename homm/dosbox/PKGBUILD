@@ -7,7 +7,7 @@ pkgrel=1
 pkgdesc="DOSBox launcher for Heroes of Might and Magic from GOG.com"
 arch=('i686' 'x86_64')
 url="http://www.gog.com"
-license=('custom')
+license=('custom:gog.com')
 depends=('dosbox' 'gog-homm-base' 'unionfs-fuse')
 source=("homm.conf" "homm.png" "homm.desktop")
 md5sums=('387bc01fce07eeab289f112ee4637fff'
@@ -20,9 +20,6 @@ package() {
 
 	install -D -m 644 $srcdir/homm.png \
 		$pkgdir/usr/share/pixmaps/homm.png
-md5sums=('387bc01fce07eeab289f112ee4637fff'
-         'a45b9cc2bf02c30facc99cb3f297dd41'
-         '0dc65fdd2ff00868edeffde86c862d90')
 
 	install -D -m 644 $srcdir/homm.desktop \
 		$pkgdir/usr/share/applications/homm.desktop
