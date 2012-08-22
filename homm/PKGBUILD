@@ -1,0 +1,10 @@
+# Maintainer: Joe Davison <joedavison.davison@gmail.com>
+
+pkgname=gog-homm
+pkgver=1.0.1.28
+pkgrel=1
+pkgdesc=Fantasy turn-based strategy game'
+arch=('i686' 'x86_64')
+url='http://gog.com/en/gamecard/heroes_of_might_and_magic'
+license=('custom:gog.com')
+depends=("${pkgname}-base" "${pkgname}-dosbox")
