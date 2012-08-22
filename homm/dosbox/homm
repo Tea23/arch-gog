@@ -5,7 +5,7 @@ RWDIR=$HOME/.gog/heroes_of_might_and_magic
 RODIR=/opt/gog/heroes_of_might_and_magic/base
 
 mkdir -p $RWDIR
-unionfs -o cow ${RWDIR}=RW:${RODIR}=RO $UNIONDIR
+unionfs -o cow -o uid=$UID ${RWDIR}=RW:${RODIR}=RO $UNIONDIR
 
 cd $UNIONDIR
 dosbox -conf /opt/gog/heroes_of_might_and_magic/dosbox/homm.conf

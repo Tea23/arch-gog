@@ -2,7 +2,7 @@
 Name=Heroes of Might and Magic
 Comment=Fantasy turn-based strategy game
 Icon=/usr/share/pixmaps/homm.png
-Exec=homm2
+Exec=homm
 Terminal=false
 Type=Application
 Categories=Game;

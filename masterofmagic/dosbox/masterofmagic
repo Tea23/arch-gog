@@ -5,7 +5,7 @@ RWDIR=$HOME/.gog/masterofmagic
 RODIR=/opt/gog/master_of_magic/base
 
 mkdir -p $RWDIR
-unionfs -o cow ${RWDIR}=RW:${RODIR}=RO $UNIONDIR
+unionfs -o cow -o uid=$UID ${RWDIR}=RW:${RODIR}=RO $UNIONDIR
 
 cd $UNIONDIR
 dosbox -conf dosboxMOM.conf

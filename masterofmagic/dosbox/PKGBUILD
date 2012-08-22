@@ -9,12 +9,12 @@ url='http://www.gog.com/gamecard/master_of_magic'
 license=('GPL')
 depends=('gog-masterofmagic-base' 'unionfs-fuse')
 source=(masterofmagic)
-md5sums=('4e3afca18ed4df283de730e936bbde72')
+md5sums=('46b6dc0187c6439c8de0ab81ddd1c706')
 
 package() {
 	install -D -m 755 $srcdir/masterofmagic \
 		$pkgdir/usr/bin/masterofmagic
 
-TODO: xdg .desktop and icon
+#TODO: xdg .desktop and icon
 
 }

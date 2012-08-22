@@ -5,7 +5,7 @@ RWDIR=$HOME/.gog/heroes_2_gold
 RODIR=/opt/gog/heroes_2_gold/base
 
 mkdir -p $RWDIR
-unionfs -o cow ${RWDIR}=RW:${RODIR}=RO $UNIONDIR
+unionfs -o cow -o uid=$UID ${RWDIR}=RW:${RODIR}=RO $UNIONDIR
 
 cd $UNIONDIR
 dosbox -conf /opt/gog/heroes_2_gold/dosbox/homm2.conf

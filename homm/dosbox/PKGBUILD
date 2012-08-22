@@ -9,10 +9,11 @@ arch=('i686' 'x86_64')
 url="http://www.gog.com"
 license=('custom:gog.com')
 depends=('dosbox' 'gog-homm-base' 'unionfs-fuse')
-source=("homm.conf" "homm.png" "homm.desktop")
+source=("homm.conf" "homm.png" "homm.desktop" "homm")
 md5sums=('387bc01fce07eeab289f112ee4637fff'
          'a45b9cc2bf02c30facc99cb3f297dd41'
-         '0dc65fdd2ff00868edeffde86c862d90')
+         '30fcc5c48260a183326349b8d716bbc8'
+         '8712330e55212b1477a349727d1530a8')
 
 package() {
 	install -D -m 755 $srcdir/homm \
@@ -24,6 +25,6 @@ package() {
 	install -D -m 644 $srcdir/homm.desktop \
 		$pkgdir/usr/share/applications/homm.desktop
 
-	install -D -m 755 $srcdir/dosbox/homm.conf \
+	install -D -m 755 $srcdir/homm.conf \
 		$pkgdir/opt/gog/${_gogname}/dosbox/homm.conf
 }
