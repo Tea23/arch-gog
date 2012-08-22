@@ -1,7 +1,8 @@
 #Arch Linux PKGBUILDs for GOG.com Games
 These PKGBUILDs are provided for people who want a quick and dirty way to install their GOGs on Arch Linux.
 
-See http://gogwiki.com/wiki/AUR for more information.
+See http://gogwiki.com/wiki/AUR for more information. You may also wish to see [this](http://www.gog.com/en/forum/general/project_arch_linux_pkgbuild_installers_for_gogs)
+GOG forum thread for more discussion.
 
 ##Usage
 These PKGBUILDs probably shouldn't be used until they are pushed to the AUR, but you are free to pull this
