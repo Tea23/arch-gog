@@ -1,4 +1,16 @@
-#!/bin/bash
+#!/bin/sh
 
-dosbox -conf "/opt/gog/homm2/homm2.conf"
-exit $?
+UNIONDIR=`mktemp -d`
+RWDIR=$HOME/.gog/heroes_2_gold
+RODIR=/opt/gog/heroes_2_gold/base
+
+mkdir -p $RWDIR
+unionfs -o cow ${RWDIR}=RW:${RODIR}=RO $UNIONDIR
+
+cd $UNIONDIR
+dosbox -conf homm2.conf
+cd
+
+sleep 1
+fusermount -u $UNIONDIR
+rmdir $UNIONDIR

@@ -10,13 +10,25 @@ arch=('i686' 'x86_64')
 url='http://www.gog.com/gamecard/master_of_magic'
 license=('custom')
 makedepends=('innoextract')
+options=(!strip)
 md5sums=('94754ecfc79887a04888fa033a11c493')
+
+# It takes a long time to compress and you should not distribute the built packages.
+# This disables compression, speeding up the build process.
+# You can remove this option or change it to .pkg.xz if you wish.
+PKGEXT=.pkg.tar
 
 build() {
 	cd $srcdir
-	innoextract setup_${_gogname}.exe
-	
-	rm -rf 'code:getdosboxfromini|path'
+
+	if [ ! -f setup_${_gogname}.exe ]; then
+		error "You must have setup_${_gogname}.exe present in the source dir: $PWD"
+		error "Download the game from your GOG shelf and try again. Stopping."
+		return 1
+	else
+		innextract setup_${_gogname}.exe
+		rm -rf 'code:getdosboxfromini|path'
+	fi
 }
 
 package() {

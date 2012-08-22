@@ -1,4 +1,4 @@
-*/*.pkg*
-*/*.exe
-*/src/
-*/pkg/
+*.pkg*
+*.exe
+src/
+pkg/

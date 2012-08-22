@@ -12,9 +12,9 @@ source=(masterofmagic)
 md5sums=('4e3afca18ed4df283de730e936bbde72')
 
 package() {
-	cd $srcdir
-	
-	mkdir -p $pkgdir/usr/bin
-	
-	mv masterofmagic $pkgdir/usr/bin
+	install -D -m 755 $srcdir/masterofmagic \
+		$pkgdir/usr/bin/masterofmagic
+
+TODO: xdg .desktop and icon
+
 }
