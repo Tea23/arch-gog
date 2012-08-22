@@ -8,7 +8,7 @@ mkdir -p $RWDIR
 unionfs -o cow ${RWDIR}=RW:${RODIR}=RO $UNIONDIR
 
 cd $UNIONDIR
-dosbox -conf homm2.conf
+dosbox -conf /opt/gog/heroes_2_gold/dosbox/homm2.conf
 cd
 
 sleep 1
