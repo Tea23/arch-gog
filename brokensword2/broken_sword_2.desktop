@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Broken Sword 2: The Smoking Mirror
+Comment=Classic adventure game
+Icon=/usr/share/pixmaps/broken_sword_2.png
+Exec=broken_sword_2
+Terminal=false
+Type=Application
+Categories=Game;
+StartupNotify=true
+
+GenericName=
