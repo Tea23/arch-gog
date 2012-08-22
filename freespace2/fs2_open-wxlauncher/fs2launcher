@@ -1,0 +1,4 @@
+#!/usr/bin/env bash
+
+cd /opt/fs2_open
+/usr/bin/wxlauncher "$@"

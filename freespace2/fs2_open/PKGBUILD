@@ -1,0 +1,57 @@
+# Maintainer: ZekeSulastin <zekesulastin@gmail.com>
+# Contributor: Mr_Robotic_Evil <mr.robotic.evil@googlemail.com>
+# Contributor: Lone_Wolf <lonewolf@xs4all.nl>
+
+# This PKGBUILD only generates the engine binary.
+# The retail Freespace 2 data is required to play the
+# original game and most mods.  You can use a non-AUR/pacman'd
+# copy, but you'll be on your own as far as running the game
+# and mods are concerned.
+# Check the AUR package 'fs2_open-data' for details.
+
+pkgname=fs2_open
+pkgver=3.6.14rc7
+_pkgver=3_6_14_RC7 # Upstream's url/dirs ...
+pkgrel=1
+pkgdesc="An enhancement of the Freespace 2 engine"
+url="http://scp.indiegames.us"
+arch=('i686' 'x86_64')
+license=('custom:freespace2')
+depends=('libjpeg' 'libpng' 'libtheora' 'libvorbis' 'lua' 'mesa' 'openal' 'sdl')
+optdepends=('fs2_open-data: retail game data for Freespace 2'
+			'fs2_open-mediavps: extensive audiovisual enhancements'
+			'fs2_open-wxlauncher: GUI mod/option manager')
+conflicts=('fs2_open_3614')
+replaces=('fs2_open_3614')
+install=fs2_open.install
+source=(http://scp.indiegames.us/builds/fs2_open_${_pkgver}_src.tgz
+		'osapi_unix.patch'
+		'increase_joy_buttons_fixed.patch'
+		'fs2_open')
+md5sums=('95c99013d1773cfe48852d43cb67b237'
+		'783d5ab68a0ce4d26ee415e8fefbc762'
+		'892cee11520d6e258eb17e897f98c1c9'
+		'291dc11b47fa4350d052c1f9bed81afd')
+
+build()
+{
+	cd "$srcdir/${pkgname}_${_pkgver}"
+
+	# Changes default video settings for better mod compatability
+	patch -Np0 -i "$srcdir/osapi_unix.patch"
+	
+	# Increases hard limit of joystick buttons for better use with HOTAS etc.
+	patch -Np0 -i "$srcdir/increase_joy_buttons_fixed.patch"
+
+	./autogen.sh --enable-speech
+	make
+}
+
+package()
+{
+	cd "$srcdir/${pkgname}_${_pkgver}"
+
+	install -D -m644 COPYING "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
+	install -D -m755 code/fs2_open_3.6.14 "$pkgdir/opt/${pkgname}/fs2_open_3.6.14"
+	install -D -m755 "$srcdir/fs2_open" "$pkgdir/usr/bin/fs2_open"
+}

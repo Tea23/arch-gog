@@ -1,0 +1,65 @@
+# Maintainer: Ezekiel Sulastin <zekesulastin@gmail.com> 
+
+# Warning: this package is BIG - 1.3 GiB for the GOG installer,
+#   2 GiB for the actual unpacked game data, and 2 GiB for
+#   the finished package if uncompressed.  mv is used over cp
+#   in the package phase to save a bit of space, but make sure
+#   there is enough room for everything.
+
+# This package defaults to using GOG's installer, using the
+#   build function to extract the data.  Please ensure the
+#   file is available in the build directory via copy or 
+#   symlink.
+
+# If using a copy of the retail CD, functions and follow the instructions
+#   from the website below to extract the data.  Once extracted, placet
+#   the data directly in $builddir/src and invoke 'makepkg -R'.
+#   http://www.hard-light.net/wiki/index.php/Fs2_open_on_Linux/Acquiring_the_Game_Data
+
+pkgname=fs2_open-data
+pkgver=1.20
+pkgrel=1
+pkgdesc="Freespace 2 retail data for fs2_open"
+arch=('any')
+url="http://www.gog.com/en/gamecard/freespace_2"
+license=('custom:freespace2')
+makedepends=('innoextract')
+
+# This package is about 2 GiB uncompressed and takes
+#	a while to recompress for not too much space savings;
+#	the following PKGEXT disables compression of the
+#	package.  Add .xz or similar to the end of PKGEXT
+#	to compress the package.
+PKGEXT=".pkg.tar"
+
+source=(setup_freespace_2.exe)
+md5sums=(bc6616aed4b769f15cc771c106e1b5fe)
+
+build() {
+	innoextract "$srcdir/setup_freespace_2.exe"
+}
+
+package() {
+	cd "$srcdir"
+
+	if [[ -r readme.txt ]]; then sed -n 416,471p readme.txt > LICENSE;
+	else head -n 18 < tmp/gog_EULA.txt > LICENSE; fi
+
+	install -D -m644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  
+	# This whole thing goes in /opt/fs2_open as a lot of upstream stuff
+	#   expects binaries and data to be together like in Windows
+	mkdir -p "$pkgdir/opt/fs2_open"
+
+	if [[ -r readme.txt ]]; then
+		mv ./* "$pkgdir/opt/fs2_open"
+	else
+		# The GOG installer places cutscenes and data copies in folders
+		#   corresponding with the original CDs; we need to move the
+		#   cutscenes and delete the redundant data and folders.
+		mkdir app/data/movies
+		mv app/data{2,3}/*.MVE app/data/movies/
+		rm -rf app/data{2,3}
+		mv app/* "$pkgdir/opt/fs2_open"
+	fi
+}

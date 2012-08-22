@@ -1,0 +1,16 @@
+# Maintainer: Ezekiel Sulastin <zekesulastin@gmail.com>
+
+# This metapackage depends on the source port of Freespace 2
+#	and a package that uses either the retail CD or GOG installer
+#	to extract the retail data.  This is by far the best way
+#	to play Freespace 2 on Linux.
+
+pkgname=gog-freespace2
+pkgver=1.20
+pkgrel=1
+pkgdesc="Single/multiplayer starfighter simulation game"
+arch=('any')
+url="http://www.gog.com/gamecard/freespace_2"
+license=('custom:goodoldgames')
+depends=('fs2_open'
+		'fs2_open-data')

@@ -1,0 +1,14 @@
+post_install() {
+
+cat << EOF
+>>> This package contains only the engine binary for fs2_open.
+>>> In order to run fs2_open, you need the data files from the
+>>> retail Freespace 2 CDs or Good Old Games' installer.  
+>>> 
+>>> Check the AUR package 'fs2_open-data' for details.
+>>>
+>>> There is a known issue involving stuttering head animations
+>>> that is fixed for the next release.
+EOF
+
+}
