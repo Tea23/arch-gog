@@ -1,0 +1,57 @@
+# Maintainer: Joe Davison <joedavison.davison@gmail.com>
+
+pkgname=gog-brokensword
+_gogname=broken_sword
+pkgver=1.0.0.7
+pkgrel=1
+pkgdesc="Classic adventure game by Revolution Games"
+arch=('i686' 'x86_64')
+url="http://www.gog.com"
+license=('custom:gog.com')
+depends=('scummvm')
+makedepends=('innoextract')
+options=(!strip)
+source=(${_gogname}
+		${_gogname}.png
+		${_gogname}.desktop)
+md5sums=('ca12b099601936a08de3059c3d7a8c8d'
+         '159a0c2f74a4ae5d3d1c149cdca821f0'
+         'd355afc221a1bdb1403cba737be30d98')
+
+# It takes a long time to compress and you should not distribute the built packages.
+# This disables compression, speeding up the build process.
+# You can remove this option or change it to .pkg.xz if you wish.
+PKGEXT=.pkg.tar
+
+build() {
+	cd $srcdir
+
+	if [ ! -f setup_${_gogname}.exe ]; then
+		error "You must have setup_${_gogname}.exe present in the source dir: $PWD"
+		error "Download the game from your GOG shelf and try again. Stopping."
+		return 1
+	else
+		innoextract setup_${_gogname}.exe	
+		# remove useless stuff
+		rm -rf tmp/ sys/
+		rm -rf "code:getdosboxfromini|path"
+		rm -rf app/ScummVM
+		
+		# gog specific stuff (gogwrap etc, we don't need it)
+		rm app/*.ico app/goggame.dll app/innosetup_license.txt app/sword1.ini
+	fi
+}
+
+package() {
+	mkdir -p $pkgdir/opt/gog/${_gogname}/
+	mv $srcdir/app $pkgdir/opt/gog/${_gogname}/base
+
+	install -D -m 755 $srcdir/${_gogname} \
+		$pkgdir/usr/bin/${_gogname}
+
+	install -D -m 644 $srcdir/${_gogname}.png \
+		$pkgdir/usr/share/pixmaps/${_gogname}.png
+
+	install -D -m 644 $srcdir/${_gogname}.desktop \
+		$pkgdir/usr/share/applications/${_gogname}.desktop
+}

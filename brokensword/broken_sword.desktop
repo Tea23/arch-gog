@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Broken Sword: The Shadow of the Templars
+Comment=Classic adventure game
+Icon=/usr/share/pixmaps/broken_sword.png
+Exec=broken_sword
+Terminal=false
+Type=Application
+Categories=Game;
+StartupNotify=true
+
+GenericName=
