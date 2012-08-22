@@ -11,6 +11,18 @@ repository and do whatever you want with them.
 Note that each PKGBUILD assumes you **already have the GOG downloaded** and no PKGBUILD will attempt to download
 a GOG automatically.
 
+Packages installed from this git are *unsupported*. Only those in the official AUR should be used. However if you
+would like to use these packages, you can pull this repo. Here we'll install Broken Sword:
+
+    $ git clone git://github.com/Tea23/arch-gog.git
+    $ mkdir brokensword/src
+    $ mv /path/to/setup_broken_sword.exe arch-gog/brokensword/src
+    $ cd brokensword
+    $ makepkg
+    $ pacman -U gog-brokensword-1.0.0.7-1-any.pkg.tar
+    
+And then to run it, check your XDG games menu or run `broken_sword`.
+
 ##Contributors
 If you would like to contribute, just contact any of the current contributors.
 
