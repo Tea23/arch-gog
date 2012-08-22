@@ -10,7 +10,7 @@ url="http://www.gog.com"
 license=('custom:gog.com')
 depends=('dosbox' 'gog-homm-base' 'unionfs-fuse')
 source=("homm.conf" "homm.png" "homm.desktop" "homm")
-md5sums=('387bc01fce07eeab289f112ee4637fff'
+md5sums=('f58ff5ed31d54168b56984857b972e41'
          'a45b9cc2bf02c30facc99cb3f297dd41'
          '30fcc5c48260a183326349b8d716bbc8'
          '8712330e55212b1477a349727d1530a8')
