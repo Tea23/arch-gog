@@ -27,12 +27,13 @@ install=fs2_open.install
 source=(http://scp.indiegames.us/builds/fs2_open_${_pkgver}_src.tgz
 		'osapi_unix.patch'
 		'increase_joy_buttons_fixed.patch'
-		'fs2_open')
+		'fs2_open'
+		'options')
 md5sums=('95c99013d1773cfe48852d43cb67b237'
 		'783d5ab68a0ce4d26ee415e8fefbc762'
 		'892cee11520d6e258eb17e897f98c1c9'
-		'291dc11b47fa4350d052c1f9bed81afd')
-
+		'b052428426e187caff79728f24e10764'
+		'1508e25abf35450e031104704c59ba6e')
 build()
 {
 	cd "$srcdir/${pkgname}_${_pkgver}"
@@ -51,7 +52,8 @@ package()
 {
 	cd "$srcdir/${pkgname}_${_pkgver}"
 
-	install -D -m644 COPYING "$pkgdir/usr/share/licenses/${pkgname}/LICENSE"
+	install -D -m644 COPYING "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+	install -D -m644 ../options "$pkgdir/usr/share/$pkgname/options"
 	install -D -m755 code/fs2_open_3.6.14 "$pkgdir/opt/${pkgname}/fs2_open_3.6.14"
 	install -D -m755 "$srcdir/fs2_open" "$pkgdir/usr/bin/fs2_open"
 }
