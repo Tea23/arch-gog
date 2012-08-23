@@ -19,7 +19,7 @@ would like to use these packages, you can pull this repo. Here we'll install Bro
     $ mv /path/to/setup_broken_sword.exe arch-gog/brokensword/src
     $ cd brokensword
     $ makepkg
-    $ pacman -U gog-brokensword-1.0.0.7-1-any.pkg.tar
+    # pacman -U gog-brokensword-1.0.0.7-1-any.pkg.tar
     
 And then to run it, check your XDG games menu or run `brokensword`.
 
