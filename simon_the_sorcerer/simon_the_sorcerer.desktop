@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Simon the Sorcerer
+Comment=Classic adventure game
+Icon=/usr/share/pixmaps/simon_the_sorcerer.png
+Exec=simon
+Terminal=false
+Type=Application
+Categories=Game;
+StartupNotify=true
+
+GenericName=

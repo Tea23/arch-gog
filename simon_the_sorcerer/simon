@@ -1,0 +1,3 @@
+#!/bin/sh
+
+scummvm "$@" -f -p /opt/gog/simon_the_sorcerer/base simon1

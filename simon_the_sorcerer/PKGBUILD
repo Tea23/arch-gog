@@ -1,0 +1,53 @@
+# Maintainer: Joe Davison <joedavison.davison@gmail.com>
+
+_gogname=simon_the_sorcerer
+pkgname=gog-${_gogname}
+pkgver=1.0.0.15
+pkgrel=1
+pkgdesc="Simon the Sorcerer is a classic 2D point and click adventure game"
+arch=('any')
+url="http://www.gog.com"
+license=('custom:gog.com')
+depends=('scummvm')
+makedepends=('innoextract')
+options=(!strip)
+source=(simon
+		${_gogname}.png
+		${_gogname}.desktop)
+md5sums=('3fbb0774e113e1a6e6c386dcefb2fd02'
+         'b9f9c5a072ac6d614b0dc5feaa114e5b'
+         'b6e792eca372573ff15ad636c55fa187')
+
+# It takes a long time to compress and you should not distribute the built packages.
+# This disables compression, speeding up the build process.
+# You can remove this option or change it to .pkg.xz if you wish.
+PKGEXT=.pkg.tar
+
+build() {
+	cd $srcdir
+
+	if [ ! -f setup_${_gogname}.exe ]; then
+		error "You must have setup_${_gogname}.exe present in the source dir: $PWD"
+		error "Download the game from your GOG shelf and try again. Stopping."
+		return 1
+	else
+		innoextract setup_${_gogname}.exe	
+
+		rm -rf app/ScummVM
+		rm app/*.ico app/goggame.dll app/innosetup_license.txt app/simon1.ini
+	fi
+}
+
+package() {
+	mkdir -p $pkgdir/opt/gog/${_gogname}/
+	mv $srcdir/app $pkgdir/opt/gog/${_gogname}/base
+
+	install -D -m 755 $srcdir/simon \
+		$pkgdir/usr/bin/simon
+
+	install -D -m 644 $srcdir/${_gogname}.png \
+		$pkgdir/usr/share/pixmaps/${_gogname}.png
+
+	install -D -m 644 $srcdir/${_gogname}.desktop \
+		$pkgdir/usr/share/applications/${_gogname}.desktop
+}
