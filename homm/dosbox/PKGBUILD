@@ -8,7 +8,7 @@ pkgdesc="DOSBox launcher for Heroes of Might and Magic from GOG.com"
 arch=('i686' 'x86_64')
 url="http://www.gog.com"
 license=('custom:gog.com')
-depends=('dosbox' 'gog-homm-base' 'unionfs-fuse')
+depends=('dosbox' 'gog-homm-base' 'gog-dosbox-launcher' 'unionfs-fuse')
 source=("homm.conf" "homm.png" "homm.desktop" "homm")
 md5sums=('f58ff5ed31d54168b56984857b972e41'
          'a45b9cc2bf02c30facc99cb3f297dd41'
