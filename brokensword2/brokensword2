@@ -1,0 +1,3 @@
+#!/bin/sh
+
+scummvm "$@" -f -p /opt/gog/broken_sword_2/base --extrapath=/opt/gog/broken_sword_2/base/Extras sword2

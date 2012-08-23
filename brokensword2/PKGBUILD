@@ -11,7 +11,7 @@ license=('custom:gog.com')
 depends=('scummvm')
 makedepends=('innoextract')
 options=(!strip)
-source=(${_gogname}
+source=(brokensword2
 		${_gogname}.png
 		${_gogname}.desktop)
 md5sums=('976749b2578014e1f34aaf35ca4b41b9'
@@ -46,8 +46,8 @@ package() {
 	mkdir -p $pkgdir/opt/gog/${_gogname}/
 	mv $srcdir/app $pkgdir/opt/gog/${_gogname}/base
 
-	install -D -m 755 $srcdir/${_gogname} \
-		$pkgdir/usr/bin/${_gogname}
+	install -D -m 755 $srcdir/brokensword2 \
+		$pkgdir/usr/bin/brokensword2
 
 	install -D -m 644 $srcdir/${_gogname}.png \
 		$pkgdir/usr/share/pixmaps/${_gogname}.png
