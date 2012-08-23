@@ -1,0 +1,22 @@
+# Maintainer: Shaun Westmacott <xyem@electricjungle.org>
+
+_gogname=master_of_magic
+pkgname=gog-${_gogname}-dosbox
+pkgver=1.0.0.18
+pkgrel=1
+pkgdesc='DOSBox launcher for Master of Magic from gog.com'
+arch=('any')
+url='http://www.gog.com/gamecard/${_gogname}'
+license=('GPL')
+depends=("gog-${_gogname}-base" 'gog-dosbox-launcher')
+source=(${_gogname} dosbox.conf)
+md5sums=('91d3174de079b216f07e472ea773e600'
+         '1c92bbc23abae0622f887600918ae9ab')
+
+package() {
+	install -D -m 755 $srcdir/${_gogname} \
+		$pkgdir/usr/bin/${_gogname}
+
+	mkdir -p $pkgdir/opt/gog/${_gogname}/dosbox
+	cp $srcdir/dosbox.conf $pkgdir/opt/gog/${_gogname}/dosbox
+}

@@ -1,10 +1,11 @@
 # Maintainer: Shaun Westmacott <xyem@electricjungle.org>
 
-pkgname=gog-masterofmagic
+_gogname=master_of_magic
+pkgname=gog-${_gogname}
 pkgver=1.0.0.18
 pkgrel=1
 pkgdesc='Single-player, fantasy turn-based strategy game'
 arch=('any')
-url='http://www.gog.com/gamecard/master_of_magic'
+url="http://www.gog.com/gamecard/${_gogname}"
 license=('GPL')
 depends=("${pkgname}-base" "${pkgname}-dosbox")
