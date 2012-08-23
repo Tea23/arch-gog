@@ -21,7 +21,7 @@ would like to use these packages, you can pull this repo. Here we'll install Bro
     $ makepkg
     $ pacman -U gog-brokensword-1.0.0.7-1-any.pkg.tar
     
-And then to run it, check your XDG games menu or run `broken_sword`.
+And then to run it, check your XDG games menu or run `brokensword`.
 
 ##Contributors
 If you would like to contribute, just contact any of the current contributors.
