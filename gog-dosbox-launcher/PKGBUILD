@@ -1,0 +1,18 @@
+# Maintainer: Shaun Westmacott <xyem@electricjungle.org>
+
+pkgname=gog-dosbox-launcher
+pkgver=1
+pkgrel=1
+pkgdesc="DOSBox launcher script for gog-*-dosbox packages"
+arch=('any')
+license=('GPL')
+depends=(unionfs-fuse)
+source=(gog-dosbox-launcher)
+md5sums=('743508c8bea8dcca811cb0b2608d5339')
+
+package() {
+  cd "$srcdir"
+  
+  install -D -m 755 $srcdir/gog-dosbox-launcher \
+                $pkgdir/usr/bin/gog-dosbox-launcher
+}

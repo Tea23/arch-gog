@@ -1,0 +1,20 @@
+#!/bin/sh
+
+GOGNAME=$1
+CONFIG=$2
+
+UNIONDIR=`mktemp -d`
+RWDIR=$HOME/.gog/$GOGNAME
+BASEDIR=/opt/gog/$GOGNAME/base
+DOSBOXDIR=/opt/gog/$GOGNAME/dosbox
+
+mkdir -p $RWDIR
+unionfs -o cow -o uid=$UID ${RWDIR}=RW:${DOSBOXDIR}=RO:${BASEDIR}=RO $UNIONDIR
+
+cd $UNIONDIR
+dosbox -conf $CONFIG
+cd
+
+sleep 1
+fusermount -u $UNIONDIR
+rmdir $UNIONDIR
