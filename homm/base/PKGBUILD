@@ -26,9 +26,6 @@ build() {
 		return 1
 	else
 		innoextract setup_${_gogname}.exe	
-		# remove useless stuff
-		rm -rf tmp/ sys/
-		rm -rf "code:getdosboxfromini|path"
 		
 		# gog specific stuff (gogwrap etc, we don't need it)
 		rm app/*.ico app/{gogwrap,"Graphic mode setup"}.exe

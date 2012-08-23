@@ -1,7 +1,7 @@
 # Maintainer: Joe Davison <joedavison.davison@gmail.com>
 
-pkgname=gog-homm_2_gold-base
 _gogname=homm_2_gold
+pkgname=gog-${_gogname}-base
 pkgver=1.0.1.16
 pkgrel=1
 pkgdesc="Fantasy turn-based strategy game, the sequel to Heroes of Might and Magic"
@@ -26,9 +26,6 @@ build() {
 		return 1
 	else
 		innoextract setup_${_gogname}.exe	
-		# remove useless stuff
-		rm -rf tmp/
-		rm -rf "code:getdosboxfromini|path"
 		
 		# gog specific stuff (gogwrap etc, we don't need it)
 		rm app/{gogwrap,"Graphic mode setup"}.exe app/goggame.dll

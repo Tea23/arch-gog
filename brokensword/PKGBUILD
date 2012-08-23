@@ -32,12 +32,8 @@ build() {
 		return 1
 	else
 		innoextract setup_${_gogname}.exe	
-		# remove useless stuff
-		rm -rf tmp/ sys/
-		rm -rf "code:getdosboxfromini|path"
+
 		rm -rf app/ScummVM
-		
-		# gog specific stuff (gogwrap etc, we don't need it)
 		rm app/*.ico app/goggame.dll app/innosetup_license.txt app/sword1.ini
 	fi
 }
