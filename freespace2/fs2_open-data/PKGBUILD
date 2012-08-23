@@ -6,15 +6,17 @@
 #   in the package phase to save a bit of space, but make sure
 #   there is enough room for everything.
 
-# This package defaults to using GOG's installer, using the
+# This package preferentially uses GOG's installer, using the
 #   build function to extract the data.  Please ensure the
 #   file is available in the build directory via copy or 
-#   symlink.
-
-# If using a copy of the retail CD, functions and follow the instructions
-#   from the website below to extract the data.  Once extracted, placet
-#   the data directly in $builddir/src and invoke 'makepkg -R'.
+#   symlink, i.e. ~/aur/fs2_open-data/setup_freespace_2.exe.
+#	If using a copy of the retail CD, follow the instructions
+#   from the website below to extract the data. Once extracted, place
+#   the data directly in the $builddir/src directory, i.e.
+#	~/aur/fs2_open-data/src/.
 #   http://www.hard-light.net/wiki/index.php/Fs2_open_on_Linux/Acquiring_the_Game_Data
+
+# TODO: acquire copy of CDs to test, refine, and include CD installer script in pkgbuild
 
 pkgname=fs2_open-data
 pkgver=1.20
@@ -32,18 +34,35 @@ makedepends=('innoextract')
 #	to compress the package.
 PKGEXT=".pkg.tar"
 
-source=(setup_freespace_2.exe)
-md5sums=(bc6616aed4b769f15cc771c106e1b5fe)
 
 build() {
-	innoextract "$srcdir/setup_freespace_2.exe"
+	local _gog_md5="bc6616aed4b769f15cc771c106e1b5fe"
+	if [[ -f ../setup_freespace_2.exe ]]; then
+		echo "GOG installer detected; checking md5sum ...";
+		if ! echo "$_gog_md5 ../setup_freespace_2.exe" | md5sum -c --status; then
+			error "Invalid md5sum; verify your download and try again."
+			return 1;
+		else ln -s ../setup_freespace_2.exe ./;
+			innoextract setup_freespace_2.exe;
+		fi
+	elif [[ -f readme.txt ]]; then
+		echo "Retail CD files detected.";
+	else
+		error "You must have either setup_freespace_2.exe or the extracted files\
+ from the retail CD present (.exe in main dir or CD files in src/)."
+		error "Either download the game from your GOG shelf or extract the files\
+ from the retail CD and try again."
+		return 1 ;
+	fi
 }
 
 package() {
 	cd "$srcdir"
 
 	if [[ -r readme.txt ]]; then sed -n 416,471p readme.txt > LICENSE;
-	else head -n 18 < tmp/gog_EULA.txt > LICENSE; fi
+	else head -n 18 < tmp/gog_EULA.txt > LICENSE; 
+		license=('custom:goodoldgames');
+	fi
 
 	install -D -m644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
   
