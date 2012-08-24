@@ -1,0 +1,11 @@
+# Maintainer: NAME <EMAIL>
+
+_gogname=GOGNAME
+pkgname=gog-${_gogname}
+pkgver=1
+pkgrel=1
+pkgdesc='FULLNAME from gog.com'
+arch=('any')
+url="http://www.gog.com/gamecard/${_gogname}"
+license=('GPL')
+depends=("${pkgname}-base" "${pkgname}-dosbox")
