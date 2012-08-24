@@ -15,8 +15,9 @@ Packages installed from this git are *unsupported*. Only those in the official A
 would like to use these packages, you can pull this repo. Here we'll install Broken Sword:
 
     $ git clone git://github.com/Tea23/arch-gog.git
+    $ cd arch-gog/products
     $ mkdir brokensword/src
-    $ mv /path/to/setup_broken_sword.exe arch-gog/brokensword/src
+    $ mv /path/to/setup_broken_sword.exe brokensword/src
     $ cd brokensword
     $ makepkg
     # pacman -U gog-brokensword-1.0.0.7-1-any.pkg.tar
@@ -28,12 +29,12 @@ If you would like to contribute, just contact any of the current contributors.
 
 Contributors should pull and work with the git in its entirety.
 
-    $ git clone git@github.com:Tea23/arch-gog.git
-    $ mkdir gamename
+    $ git clone git://github.com/Tea23/arch-gog.git
+    $ cd arch-gog/products
+    $ cp -Rv ../template gamename
     $ cd gamename
-    $ mkdir base
-    $ cd base
-    $ touch PKGBUILD
+    $ mv PKGBUILD.dosbox PKGBUILD (whichever meta package is appropriate)
+    $ rm PKGBUILD.* (plus any launcher packages that won't be used)
     
 Do **not** push game datafiles or packages!! .gitignore in the root should protect against this, but please
 add your own .gitignore rules where appropriate.
