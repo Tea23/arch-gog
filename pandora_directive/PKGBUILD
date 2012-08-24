@@ -1,0 +1,11 @@
+# Maintainer: Shaun Westmacott <xyem@electricjungle.org>
+
+_gogname=pandora_directive
+pkgname=gog-${_gogname}
+pkgver=1
+pkgrel=1
+pkgdesc='Tex Murphy: The Pandora Directive from gog.com'
+arch=('any')
+url="http://www.gog.com/gamecard/${_gogname}"
+license=('GPL')
+depends=("${pkgname}-base" "${pkgname}-dosbox")

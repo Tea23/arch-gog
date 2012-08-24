@@ -1,0 +1,3 @@
+#!/bin/sh
+
+gog-dosbox-launcher battle_chess dosboxCH.conf

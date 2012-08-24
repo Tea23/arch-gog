@@ -1,0 +1,21 @@
+# Maintainer: Shaun Westmacott <xyem@electricjungle.org>
+
+_gogname=ishar_compilation
+pkgname=gog-${_gogname}-dosbox
+pkgver=1
+pkgrel=1
+pkgdesc='DOSBox launcher for FULLNAME from gog.com'
+arch=('any')
+url='http://www.gog.com/gamecard/${_gogname}'
+license=('GPL')
+depends=("gog-${_gogname}-base" 'gog-dosbox-launcher')
+source=(${_gogname} dosbox.conf)
+md5sums=()
+
+package() {
+	install -D -m 755 $srcdir/${_gogname} \
+		$pkgdir/usr/bin/${_gogname}
+
+	mkdir -p $pkgdir/opt/gog/${_gogname}/dosbox
+	cp $srcdir/dosbox.conf $pkgdir/opt/gog/${_gogname}/dosbox
+}

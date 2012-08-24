@@ -1,0 +1,11 @@
+# Maintainer: Shaun Westmacott <xyem@electricjungle.org>
+
+_gogname=battle_chess
+pkgname=gog-${_gogname}
+pkgver=1
+pkgrel=1
+pkgdesc='Battle Chess: Special Edition from gog.com'
+arch=('any')
+url="http://www.gog.com/gamecard/${_gogname}"
+license=('GPL')
+depends=("${pkgname}-base" "${pkgname}-dosbox")

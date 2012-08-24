@@ -1,0 +1,36 @@
+# Maintainer: Shaun Westmacott <xyem@electricjungle.org>
+
+_gogname=one_unit_whole_blood
+pkgname=gog-${_gogname}-base
+pkgver=1.0.0.18
+pkgrel=1
+pkgdesc='Base files for FULLNAME from gog.com'
+arch=('any')
+url='http://www.gog.com/gamecard/${_gogname}'
+license=('custom')
+makedepends=('innoextract')
+md5sums=()
+
+# It takes a long time to compress and you should not distribute the built packages.
+# This disables compression, speeding up the build process.
+# You can remove this option or change it to .pkg.xz if you wish.
+PKGEXT=.pkg.tar
+
+build() {
+	cd $srcdir
+
+	if [ ! -f setup_${_gogname}.exe ]; then
+		error "You must have setup_${_gogname}.exe present in the source dir: $PWD"
+		error "Download the game from your GOG shelf and try again. Stopping."
+		return 1
+	else
+		innoextract setup_${_gogname}.exe
+	fi
+}
+
+package() {
+	cd $srcdir
+	
+	mkdir -p $pkgdir/opt/gog/${_gogname}/	
+	mv app/ $pkgdir/opt/gog/${_gogname}/base
+}
