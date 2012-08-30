@@ -16,11 +16,10 @@ pkgrel=1
 pkgdesc="An enhancement of the Freespace 2 engine"
 url="http://scp.indiegames.us"
 arch=('i686' 'x86_64')
-license=('custom:freespace2')
+license=('custom:fs2_open')
 depends=('libjpeg' 'libpng' 'libtheora' 'libvorbis' 'lua' 'mesa' 'openal' 'sdl')
 optdepends=('fs2_open-data: retail game data for Freespace 2'
-			'fs2_open-mediavps: extensive audiovisual enhancements'
-			'fs2_open-wxlauncher: GUI mod/option manager')
+			'fs2_open-mediavps: extensive audiovisual enhancements')
 conflicts=('fs2_open_3614')
 replaces=('fs2_open_3614')
 install=fs2_open.install
