@@ -13,9 +13,8 @@ pkgrel=1
 pkgdesc="Dramatic audiovisual enhancements for fs2_open"
 arch=('any')
 url="http://www.hard-light.net/forums/index.php?board=120.0"
-license=('custom:freespace2')
+license=('custom:fs2_open')
 depends=('fs2_open' 'fs2_open-data')
-optdepends=('fs2_open-wxlauncher: GUI configuration/mod manager')
 source=(http://mvp.fsmods.net/3612/MediaVPs_3612.zip
 		http://mvp.fsmods.net/3612/MV_Root_3612.zip
 		http://mvp.fsmods.net/3612/MV_Root_Update.zip
@@ -46,7 +45,7 @@ md5sums=('c019c57629f352ff68b00c0a5478dca5'
 		'f8e6011c0f26ad9eae9665c0456849cb'
 		'8e32344458d53ff7be48c91b7d4cf158'
 		'8bd0d689fd16c681a7710400352b8f68'
-		'5c8a81de63adf4e0f95193f7a1187b1e'
+		'9b4e7a94783df9d38307fb174aadc003'
 		'3d533f810edf833d8c901a87b8f4112d')
 
 PKGEXT=".pkg.tar"
