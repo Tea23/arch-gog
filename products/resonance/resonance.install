@@ -1,6 +1,6 @@
 post_install() {
-    echo "==> "
-    echo "==> Be aware that on x86_64 systems, the engine may randomly crash without warning."
+	echo "==> "
+	echo "==> Be aware that on x86_64 systems, the engine may randomly crash without warning."
 	echo "==> The Linux build of Adventure Game Studio is still under development"
 	echo "==> and native 64-bit support is still experimental."
 	echo "==> "
