@@ -1,0 +1,12 @@
+post_install() {
+    echo "==> "
+    echo "==> Be aware that on x86_64 systems, the engine may randomly crash without warning."
+	echo "==> The Linux build of Adventure Game Studio is still under development"
+	echo "==> and native 64-bit support is still experimental."
+	echo "==> "
+	echo "==> If you have any issues, Wine should be sufficient for playing this game"
+	echo "==> but be aware that you will have to manually acquire the datafiles from"
+	echo "==> /opt/gog/resonance/base to use them with Wine until the GOG PKGBUILD"
+	echo "==> project produces a working Wine launcher."
+	echo "==> "
+}

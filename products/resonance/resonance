@@ -1,0 +1,16 @@
+#!/bin/sh
+
+UNIONDIR=`mktemp -d`
+RWDIR=$HOME/.gog/resonance
+RODIR=/opt/gog/resonance/base
+
+mkdir -p $RWDIR
+unionfs -o cow ${RWDIR}=RW:${RODIR}=RO $UNIONDIR
+
+cd $UNIONDIR
+ags
+cd
+
+sleep 1
+fusermount -u $UNIONDIR
+rmdir $UNIONDIR

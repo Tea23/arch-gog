@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Resonance
+Comment=Sci-fi adventure game
+Icon=/usr/share/pixmaps/resonance.png
+Exec=resonance
+Terminal=false
+Type=Application
+Categories=Game;
+StartupNotify=true
+
+GenericName=
