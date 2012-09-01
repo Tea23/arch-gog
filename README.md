@@ -29,7 +29,7 @@ If you would like to contribute, just contact any of the current contributors.
 
 Contributors should pull and work with the git in its entirety.
 
-    $ git clone git://github.com/Tea23/arch-gog.git
+    $ git clone https://github.com/Tea23/arch-gog.git
     $ cd arch-gog/products
     $ cp -Rv ../template gamename
     $ cd gamename
