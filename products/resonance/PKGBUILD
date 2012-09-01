@@ -1,4 +1,5 @@
 # Maintainer: Joe Davison <joedavison.davison@gmail.com>
+# Part of the unofficial GOG.com PKGBUILD project: http://github.com/Tea23/arch-gog
 
 pkgname=gog-resonance
 _gogname=resonance
