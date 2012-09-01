@@ -1,3 +1,4 @@
+# Part of the unofficial GOG.com PKGBUILD project: http://github.com/Tea23/arch-gog
 # Maintainer: Joe Davison <joedavison.davison@gmail.com>
 
 pkgname=gog-homm-dosbox
