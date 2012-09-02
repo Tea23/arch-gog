@@ -43,6 +43,6 @@ When you've finished making your PKGBUILD, you've built it and you've tested it,
 
     $ git add gamename/
     $ git commit -m "added a super awesome game yo"
-    $ git push -u origin master
+    $ git push
 
 Have fun.
