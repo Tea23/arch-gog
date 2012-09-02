@@ -4,7 +4,7 @@
 pkgname=gog-homm_2_gold-dosbox
 _gogname=homm_2_gold
 pkgver=1.0.1.16
-pkgrel=1
+pkgrel=2
 pkgdesc="DOSBox launcher for Heroes of Might and Magic 2 from GOG.com"
 arch=('i686' 'x86_64')
 url="http://www.gog.com"
@@ -13,12 +13,9 @@ depends=('dosbox' 'gog-homm_2_gold-base' 'gog-dosbox-launcher' 'unionfs-fuse')
 source=("homm2.conf" "homm2.png" "homm2.desktop")
 md5sums=('37c7afefdaf5ff0053ef1a91b250844b'
          '538ecd70b9f96adede2a728260dadb1a'
-         'f6e88287a8ec5f686a9f224a92b66c63')
+         '0ab890b7c2d5232bc7167d047e0976d7')
 
 package() {
-	install -D -m 755 $srcdir/homm2 \
-		$pkgdir/usr/bin/homm2
-
 	install -D -m 644 $srcdir/homm2.png \
 		$pkgdir/usr/share/pixmaps/homm2.png
 

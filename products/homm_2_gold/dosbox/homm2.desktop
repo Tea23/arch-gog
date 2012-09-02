@@ -2,7 +2,7 @@
 Name=Heroes of Might and Magic 2
 Comment=Fantasy turn-based strategy game
 Icon=/usr/share/pixmaps/homm2.png
-Exec=homm2
+Exec=gog-dosbox-launcher homm_2_gold homm2.conf
 Terminal=false
 Type=Application
 Categories=Game;
