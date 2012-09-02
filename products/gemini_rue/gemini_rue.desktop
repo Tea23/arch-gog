@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Gemini Rue
+Comment=Sci-fi adventure game
+Icon=/usr/share/pixmaps/gemini_rue.png
+Exec=gemini_rue
+Terminal=false
+Type=Application
+Categories=Game;
+StartupNotify=true
+
+GenericName=
