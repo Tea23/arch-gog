@@ -1,56 +1,12 @@
 # Part of the unofficial GOG.com PKGBUILD project: http://github.com/Tea23/arch-gog
 # Maintainer: Joe Davison <joedavison.davison@gmail.com>
 
-pkgname=gog-resonance
 _gogname=resonance
+pkgname=gog-${_gogname}
 pkgver=1.0.0.5
 pkgrel=1
-pkgdesc="A sci-fi adventure game made by Vince Twelve and published by Wadjet Eye Games"
+pkgdesc='A sci-fi adventure game made by Vince Twelve and published by Wadjet Eye Games'
 arch=('any')
-url="http://www.gog.com"
+url="http://www.gog.com/gamecard/${_gogname}"
 license=('custom:gog.com')
-depends=('adventuregamestudio-git' 'unionfs-fuse')
-makedepends=('innoextract')
-optdepends=('wine: to play the game with Wine instead')
-install=resonance.install
-options=(!strip)
-source=(${_gogname}
-		${_gogname}.png
-		${_gogname}.desktop)
-md5sums=('a2359720fbbaa84cb5958ff9a8ace138'
-         'e111fac9f8d5d14de7c2eb9a2aef13fa'
-         'c5c910b57c0f53659c1bcbed622c438b')
-
-
-# It takes a long time to compress and you should not distribute the built packages.
-# This disables compression, speeding up the build process.
-# You can remove this option or change it to .pkg.tar.xz if you wish.
-PKGEXT=.pkg.tar
-
-build() {
-	cd $srcdir
-
-	if [ ! -f setup_${_gogname}_$pkgver.exe ]; then
-		error "You must have setup_${_gogname}_$pkgver.exe present in the source dir: $PWD"
-		error "Download the game from your GOG shelf and try again. Stopping."
-		return 1
-	else
-		innoextract setup_${_gogname}_$pkgver.exe	
-
-		rm app/*.ico app/goggame.dll app/innosetup_license.txt
-	fi
-}
-
-package() {
-	mkdir -p $pkgdir/opt/gog/${_gogname}/
-	mv $srcdir/app $pkgdir/opt/gog/${_gogname}/base
-
-	install -D -m 755 $srcdir/${_gogname} \
-		$pkgdir/usr/bin/${_gogname}
-
-	install -D -m 644 $srcdir/${_gogname}.png \
-		$pkgdir/usr/share/pixmaps/${_gogname}.png
-
-	install -D -m 644 $srcdir/${_gogname}.desktop \
-		$pkgdir/usr/share/applications/${_gogname}.desktop
-}
+depends=("$pkgname-base" "$pkgname-native")
