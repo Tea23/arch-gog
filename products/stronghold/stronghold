@@ -1,0 +1,18 @@
+#!/bin/sh
+
+UNIONDIR=`mktemp -d`
+RWDIR=$HOME/.gog/stronghold
+RODIR=/opt/gog/stronghold/base
+
+mkdir -p $RWDIR
+unionfs -o cow ${RWDIR}=RW:${RODIR}=RO $UNIONDIR
+
+cd $UNIONDIR/drive_c
+export WINEARCH=win32
+export WINEPREFIX=$UNIONDIR
+wine "Program Files/GOG.com/Stronghold/stronghold.exe"
+cd
+
+sleep 1
+fusermount -u $UNIONDIR
+rmdir $UNIONDIR

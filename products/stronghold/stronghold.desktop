@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=Stronghold
+Comment=Castle simulation
+Icon=/usr/share/pixmaps/stronghold.png
+Exec=stronghold
+Terminal=false
+Type=Application
+Categories=Game;
+StartupNotify=true
+
+GenericName=
