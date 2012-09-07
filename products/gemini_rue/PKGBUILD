@@ -1,50 +1,12 @@
 # Part of the unofficial GOG.com PKGBUILD project: http://github.com/Tea23/arch-gog
 # Maintainer: Joe Davison <joedavison.davison@gmail.com>
 
-pkgname=gog-gemini_rue
 _gogname=gemini_rue
+pkgname=gog-${_gogname}
 pkgver=1.0.0.4
 pkgrel=1
-pkgdesc="A gritty futuristic adventure game by Joshua Nuernberger"
+pkgdesc='Gemini Rue from GOG.com'
 arch=('any')
-url="http://www.gog.com"
+url="http://www.gog.com/gamecard/${_gogname}"
 license=('custom:gog.com')
-depends=('adventuregamestudio-git' 'unionfs-fuse')
-makedepends=('innoextract')
-optdepends=('wine: to play the game with Wine instead')
-install=${_gogname}.install
-options=(!strip)
-source=(${_gogname}
-		${_gogname}.desktop)
-md5sums=('265c6144e61e8d65687532eb9eba5c19'
-         'c1db8024d6da35215ef48b959104e26f')
-
-# It takes a long time to compress and you should not distribute the built packages.
-# This disables compression, speeding up the build process.
-# You can remove this option or change it to .pkg.tar.xz if you wish.
-PKGEXT=.pkg.tar
-
-build() {
-	cd $srcdir
-
-	if [ ! -f setup_${_gogname}_$pkgver.exe ]; then
-		error "You must have setup_${_gogname}_$pkgver.exe present in the source dir: $PWD"
-		error "Download the game from your GOG shelf and try again. Stopping."
-		return 1
-	else
-		innoextract setup_${_gogname}_$pkgver.exe	
-
-		rm app/*.ico app/goggame.dll app/innosetup_license.txt
-	fi
-}
-
-package() {
-	mkdir -p $pkgdir/opt/gog/${_gogname}/
-	mv $srcdir/app $pkgdir/opt/gog/${_gogname}/base
-
-	install -D -m 755 $srcdir/${_gogname} \
-		$pkgdir/usr/bin/${_gogname}
-
-	install -D -m 644 $srcdir/${_gogname}.desktop \
-		$pkgdir/usr/share/applications/${_gogname}.desktop
-}
+depends=("$pkgname-base" "$pkgname-native")

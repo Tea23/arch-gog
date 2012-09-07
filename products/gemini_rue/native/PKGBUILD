@@ -1,0 +1,31 @@
+# Part of the unofficial GOG.com PKGBUILD project: http://github.com/Tea23/arch-gog
+# Maintainer: Joe Davison <joedavison.davison@gmail.com>
+
+_gogname=gemini_rue
+pkgname=gog-${_gogname}-native
+pkgver=1.0.0.4
+pkgrel=1
+pkgdesc="Gemini Rue from GOG.com, native launcher"
+arch=('any')
+url="http://www.gog.com"
+license=('custom:gog.com')
+depends=('adventuregamestudio-git' 'unionfs-fuse' "gog-${_gogname}-base")
+makedepends=('innoextract')
+options=(!strip)
+source=(${_gogname}
+		${_gogname}.png
+		${_gogname}.desktop)
+md5sums=('265c6144e61e8d65687532eb9eba5c19'
+         'fd2453a78a466cf96cda1fc4324b3607'
+         'c1db8024d6da35215ef48b959104e26f')
+
+package() {
+	install -D -m 755 $srcdir/${_gogname} \
+		$pkgdir/usr/bin/${_gogname}
+
+	install -D -m 644 $srcdir/${_gogname}.png \
+		$pkgdir/usr/share/pixmaps/${_gogname}.png
+
+	install -D -m 644 $srcdir/${_gogname}.desktop \
+		$pkgdir/usr/share/applications/${_gogname}.desktop
+}
