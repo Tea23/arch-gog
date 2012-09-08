@@ -9,7 +9,7 @@ pkgdesc="Stronghold from GOG.com"
 arch=('any')
 url="http://www.gog.com"
 license=('custom:gog.com')
-makedepends=('wine')
+depends=('wine' 'unionfs-fuse')
 options=(!strip)
 source=(${_gogname}
 	${_gogname}.png
