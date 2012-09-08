@@ -1,18 +1,19 @@
 #!/bin/sh
 
-UNIONDIR=`mktemp -d`
+UNIONDIR=`mktemp -d --tmpdir=$HOME/.gog`
 RWDIR=$HOME/.gog/stronghold
 RODIR=/opt/gog/stronghold/base
 
 mkdir -p $RWDIR
 unionfs -o cow ${RWDIR}=RW:${RODIR}=RO $UNIONDIR
 
-cd $UNIONDIR/drive_c
 export WINEARCH=win32
 export WINEPREFIX=$UNIONDIR
-wine "Program Files/GOG.com/Stronghold/stronghold.exe"
+cd $WINEPREFIX/drive_c/Program\ Files/GOG.com/Stronghold
+wine Stronghold.exe
 cd
 
+# None of this works yet
 sleep 1
 fusermount -u $UNIONDIR
 rmdir $UNIONDIR

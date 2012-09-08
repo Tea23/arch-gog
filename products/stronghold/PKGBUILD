@@ -14,10 +14,9 @@ options=(!strip)
 source=(${_gogname}
 	${_gogname}.png
 	${_gogname}.desktop)
-md5sums=('ca824b9b947c70332f12cd5f32ce71d7'
+md5sums=('51a5a1f2353a9455b473bc2871f09a71'
          '77d8344462adaea52d0065e8c748b0c8'
          'b03ad7d6cd96050ffb59f46e02043878')
-
 
 # It takes a long time to compress and you should not distribute the built packages.
 # This disables compression, speeding up the build process.
