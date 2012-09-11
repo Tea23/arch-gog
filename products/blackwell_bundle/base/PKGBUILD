@@ -1,0 +1,50 @@
+# Part of the unofficial GOG.com PKGBUILD project: http://github.com/Tea23/arch-gog
+# Maintainer: Joe Davison <joedavison.davison@gmail.com>
+
+_gogname=blackwell_bundle
+pkgname=gog-${_gogname}-base
+pkgver=1.0.0.8
+pkgrel=1
+pkgdesc="The Blackwell Bundle from GOG.com, base game datafiles"
+arch=('any')
+url="http://www.gog.com/gamecard/${_gogname}"
+license=('custom:gog.com')
+makedepends=('innoextract')
+options=(!strip)
+
+
+# It takes a long time to compress and you should not distribute the built packages.
+# This disables compression, speeding up the build process.
+# You can remove this option or change it to .pkg.tar.xz if you wish.
+PKGEXT=.pkg.tar
+
+build() {
+	cd $srcdir
+
+	if [ ! -f setup_${_gogname}_$pkgver.exe ]; then
+		error "You must have setup_${_gogname}_$pkgver.exe present in the source dir: $PWD"
+		error "Download the game from your GOG shelf and try again. Stopping."
+		return 1
+	else
+		innoextract setup_${_gogname}_$pkgver.exe
+
+		rm app/innosetup_license.txt
+
+		#Convergence
+		rm app/Convergence/*.ico app/Convergence/goggame.dll
+
+		#Deception
+		rm app/Deception/*.ico app/Deception/goggame.dll
+
+		#Legacy
+		rm app/Legacy/*.ico app/Legacy/goggame.dll
+
+		#Unbound
+		rm app/Unbound/*.ico app/Unbound/goggame.dll
+	fi
+}
+
+package() {
+	mkdir -p $pkgdir/opt/gog/${_gogname}/
+	mv $srcdir/app $pkgdir/opt/gog/${_gogname}/base
+}
