@@ -4,13 +4,30 @@ UNIONDIR=`mktemp -d`
 RWDIR=$HOME/.gog/gemini_rue
 RODIR=/opt/gog/gemini_rue/base
 
-mkdir -p $RWDIR
+  if [ ! -d $RWDIR ]; then
+    mkdir -p $RWDIR
+    echo "Local storage directory created at $RWDIR"
+    echo "Starting unionfs"
+  else
+    echo "Local storage already exists, starting unionfs"
+  fi
 unionfs -o cow ${RWDIR}=RW:${RODIR}=RO $UNIONDIR
+echo "unionfs mounted at $UNIONDIR"
 
 cd $UNIONDIR
+echo "Launching game..."
 ags
+echo "Waiting for game to finish..."
 cd
 
 sleep 1
 fusermount -u $UNIONDIR
 rmdir $UNIONDIR
+
+  if [ ! -d $UNIONDIR ]; then
+    echo "unionfs unmounted; $UNIONDIR removed"
+    echo "Done. Quitting."
+  else
+    echo "unionfs didn't unmount, something went wrong"
+    echo "rescue your savegames from $UNIONDIR and report a bug"
+  fi
