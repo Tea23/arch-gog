@@ -1,0 +1,49 @@
+#!/bin/sh
+
+DIR=$(find /opt/gog/blackwell_bundle/base -mindepth 1 -maxdepth 1 -type d -iname "$1")
+
+if [ -z $DIR ]; then
+	if [ -z $(command -v zenity) ]; then
+		echo "Unable to find game and unable to find Zenity for prompt"
+		exit
+	else
+		DIR=$(find /opt/gog/blackwell_bundle/base -mindepth 1 -maxdepth 1 -type d -printf "%f\t%p\n" | sort | sed 's/\t/\n/' | zenity --list --column "Name" --column "Path" --hide-column=2 --print-column=2)
+	fi
+fi
+
+if [ -z $DIR ]; then
+	echo "Game not selected or found"
+	exit
+fi
+
+GOGNAME=$(basename "$DIR" | tr -s  '[:upper:]'  '[:lower:]')
+UNIONDIR=`mktemp -d`
+RWDIR=$HOME/.gog/blackwell/$GOGNAME
+BASEDIR=$DIR
+
+  if [ ! -d $RWDIR ]; then
+    mkdir -p $RWDIR
+    echo "Local storage directory created at $RWDIR"
+    echo "Starting unionfs"
+  else
+    echo "Local storage already exists, starting unionfs"
+  fi
+unionfs -o cow -o uid=$UID ${RWDIR}=RW:${DOSBOXDIR}=RO:${BASEDIR}=RO $UNIONDIR
+echo "unionfs mounted at $UNIONDIR"
+
+cd $UNIONDIR
+echo "Launching game..."
+####### Launch needed
+echo "Waiting for game to finish..."
+cd
+
+sleep 1
+fusermount -u $UNIONDIR
+rmdir $UNIONDIR
+  if [ ! -d $UNIONDIR ]; then
+    echo "unionfs unmounted; $UNIONDIR removed"
+    echo "Done. Quitting."
+  else
+    echo "unionfs didn't unmount, something went wrong"
+    echo "rescue your savegames from $UNIONDIR and report a bug"
+  fi
