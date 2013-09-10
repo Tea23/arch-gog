@@ -10,7 +10,6 @@ arch=('i686' 'x86_64')
 url="http://www.gog.com"
 license=('custom:gog.com')
 makedepends=('innoextract')
-options=(!strip)
 md5sums=(b75bb495593edaf1ff785e9bcec0cac0)
 _killjunk=true
 
