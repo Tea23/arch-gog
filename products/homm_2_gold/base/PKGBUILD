@@ -1,9 +1,9 @@
 # Part of the unofficial GOG.com PKGBUILD project: http://github.com/Tea23/arch-gog
 # Maintainer: Joe Davison <joedavison.davison@gmail.com>
 
-_gogname=homm_2_gold
+_gogname=homm2_gold
 pkgname=gog-${_gogname}-base
-pkgver=1.0.1.16
+pkgver=2.0.0.24
 pkgrel=1
 pkgdesc="Fantasy turn-based strategy game, the sequel to Heroes of Might and Magic"
 arch=('i686' 'x86_64')
@@ -11,7 +11,8 @@ url="http://www.gog.com"
 license=('custom:gog.com')
 makedepends=('innoextract')
 options=(!strip)
-md5sums=(4f089d5870e8639a17e26f00858da727)
+md5sums=(b75bb495593edaf1ff785e9bcec0cac0)
+_killjunk=true
 
 # It takes a long time to compress and you should not distribute the built packages.
 # This disables compression, speeding up the build process.
@@ -21,22 +22,39 @@ PKGEXT=.pkg.tar
 build() {
 	cd $srcdir
 
-	if [ ! -f setup_${_gogname}.exe ]; then
-		error "You must have setup_${_gogname}.exe present in the source dir: $PWD"
+	if [ ! -f setup_${_gogname}_$pkgver.exe ]; then
+		error "You must have setup_${_gogname}_$pkgver.exe present in the source dir: $PWD"
 		error "Download the game from your GOG shelf and try again. Stopping."
 		return 1
 	else
-		innoextract setup_${_gogname}.exe	
-		
-		# gog specific stuff (gogwrap etc, we don't need it)
-		rm app/{gogwrap,"Graphic mode setup"}.exe app/goggame.dll
+		msg "Checking file hash..."
+		if [[ `md5sum setup_${_gogname}_$pkgver.exe` == *$md5sums* ]]; then
+			msg "Passed integrity check, extracting..."
+			innoextract setup_${_gogname}_$pkgver.exe
+		else
+			error "Setup file is corrupted; returned wrong MD5"
+			error "Redownload $_gogname and try again. Stopping."
+			return1
+		fi
+
+
+		if [ ${_killjunk} == true ]; then
+			msg "Deleting Windows-specific files"
+			rm -rf app/{Support,gog}.ico app/DOSBOX app/GameuxInstallHelper.dll
+
+		else
+			msg "Not removing any Windows-only junk"
+		fi
+
 	fi
 }
 
 package() {
-# TODO: Convert to install
+	install -D -m644 $srcdir/app/manual.pdf \
+		$pkgdir/usr/share/doc/$pkgname/manual.pdf
+
 	mkdir -p $pkgdir/opt/gog/${_gogname}/
 	
 	cd $srcdir
-	mv app/ $pkgdir/opt/gog/${_gogname}/base
+	cp -r $pkgdir/opt/gog/${_gogname}/base
 }
