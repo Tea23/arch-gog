@@ -13,9 +13,6 @@ makedepends=('innoextract')
 md5sums=(b75bb495593edaf1ff785e9bcec0cac0)
 _killjunk=true
 
-# It takes a long time to compress and you should not distribute the built packages.
-# This disables compression, speeding up the build process.
-# You can remove this option or change it to .pkg.xz if you wish.
 PKGEXT=.pkg.tar
 
 build() {
