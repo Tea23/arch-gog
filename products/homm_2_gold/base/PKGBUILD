@@ -34,7 +34,7 @@ build() {
 		else
 			error "Setup file is corrupted; returned wrong MD5"
 			error "Redownload $_gogname and try again. Stopping."
-			return1
+			return 1
 		fi
 
 
