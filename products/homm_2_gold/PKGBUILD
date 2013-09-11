@@ -1,8 +1,8 @@
 # Part of the unofficial GOG.com PKGBUILD project: http://github.com/Tea23/arch-gog
 # Maintainer: Joe Davison <joedavison.davison@gmail.com>
 
-pkgname=gog-homm_2_gold
-pkgver=1.0.0.18
+pkgname=gog-homm2_gold
+pkgver=2.0.0.24
 pkgrel=1
 pkgdesc='Fantasy turn-based strategy game, the sequel to Heroes of Might and Magic'
 arch=('any')

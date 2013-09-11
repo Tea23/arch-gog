@@ -1,9 +1,9 @@
 # Part of the unofficial GOG.com PKGBUILD project: http://github.com/Tea23/arch-gog
 # Maintainer: Joe Davison <joedavison.davison@gmail.com>
 
-pkgname=gog-homm_2_gold-dosbox
-_gogname=homm_2_gold
-pkgver=1.0.1.16
+_gogname=homm2_gold
+pkgname=gog-${_gogname}-dosbox
+pkgver=2.0.0.24
 pkgrel=2
 pkgdesc="DOSBox launcher for Heroes of Might and Magic 2 from GOG.com"
 arch=('i686' 'x86_64')

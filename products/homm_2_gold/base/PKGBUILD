@@ -19,9 +19,11 @@ build() {
 	cd $srcdir
 
 	if [ ! -f setup_${_gogname}_$pkgver.exe ]; then
-		error "You must have setup_${_gogname}_$pkgver.exe present in the source dir: $PWD"
+		error "You must have setup_${_gogname}_$pkgver.exe present in the source dir:"
+		error "$PWD"
 		error "Download the game from your GOG shelf and try again. Stopping."
 		return 1
+
 	else
 		msg "Checking file hash..."
 		if [[ `md5sum setup_${_gogname}_$pkgver.exe` == *$md5sums* ]]; then
@@ -33,14 +35,28 @@ build() {
 			return 1
 		fi
 
-
+			if [ -d $srcdir/junk ]; then
+				rm -r $srcdir/junk
+				mkdir $srcdir/junk
+			else
+				mkdir $srcdir/junk
+			fi
+		
 		if [ ${_killjunk} == true ]; then
 			msg "Deleting Windows-specific files"
-			rm -rf app/{Support,gog}.ico app/DOSBOX app/GameuxInstallHelper.dll
+			mv app/{Support,gog}.ico junk/
+			mv app/DOSBOX junk/
+			mv app/GameuxInstallHelper.dll junk/
 
 		else
 			msg "Not removing any Windows-only junk"
 		fi
+
+		mv app/gfw_high.ico $srcdir/junk
+		cd $srcdir/junk
+		icotool -x -i 6 gfw_high.ico
+		icotool -x -i 8 gfw_high.ico
+		icotool -x -i 9 gfw_high.ico
 
 	fi
 }
