@@ -9,7 +9,7 @@ arch=('any')
 license=('GPL')
 depends=(unionfs-fuse)
 source=(gog-dosbox-launcher)
-md5sums=('743508c8bea8dcca811cb0b2608d5339')
+md5sums=('184773218d91af31efb774f123007b58')
 
 package() {
   cd "$srcdir"
